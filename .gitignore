@@ -1,0 +1,36 @@
+# .NET
+**/bin/
+**/obj/
+**/.vs/
+*.user
+*.suo
+
+# Node / Vue
+Frontend/node_modules/
+Frontend/dist/
+
+# Python
+AI-Service/__pycache__/
+AI-Service/**/__pycache__/
+AI-Service/.venv/
+AI-Service/venv/
+
+# ML artifacts (regenerate with: python -m app.model)
+AI-Service/models/*.pkl
+
+# SQL Server data files (created locally)
+Database/setup-log.txt
+
+# Screenshots tooling (keep PNG images)
+screenshots/node_modules/
+screenshots/package-lock.json
+screenshots/package.json
+screenshots/capture.mjs
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+.DS_Store
+Frontend/.env
