@@ -88,7 +88,8 @@ public class PredictionService
         };
 
         double tempFactor = r.Temperature > 25 ? 1.15 : r.Temperature < 5 ? 1.20 : 1.0;
-        double weekendFactor = r.DayOfWeek is 0 or 6 ? 0.75 : 1.0;
+        // Same numbering as the interface and the Python model: Monday = 0, Sunday = 6.
+        double weekendFactor = r.DayOfWeek is 5 or 6 ? 0.75 : 1.0;
 
         return base_ * hourFactor * tempFactor * weekendFactor;
     }

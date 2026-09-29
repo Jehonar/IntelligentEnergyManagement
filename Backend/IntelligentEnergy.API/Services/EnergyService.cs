@@ -40,7 +40,11 @@ public class EnergyService
 
     public async Task<List<DailyConsumptionDto>> GetDailyAsync(int days = 30)
     {
-        var from = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-days));
+        var latest = await _db.EnergyReadings.MaxAsync(r => (DateOnly?)r.ReadingDate);
+        if (latest is null)
+            return [];
+
+        var from = latest.Value.AddDays(-(Math.Max(days, 1) - 1));
 
         return await _db.EnergyReadings
             .Where(r => r.ReadingDate >= from)
