@@ -4,6 +4,12 @@ A university project demonstrating how Artificial Intelligence can be used to **
 
 ---
 
+## Project Scope
+
+The system is a small prototype of an Intelligent Energy Management System. It focuses on three main functions: monitoring energy consumption, predicting future consumption, and generating simple recommendations based on the prediction results.
+
+---
+
 ## Architecture Overview
 
 ```
@@ -53,7 +59,7 @@ Hap **SQL Server Management Studio (SSMS)** ose përdor `sqlcmd` dhe ekzekuto sk
 Database\CreateDatabase.sql
 ```
 
-Skripti krijon bazën **`IntelligentEnergySystem`**, tabelat dhe ~8,640 lexime ore (3 muaj × 4 pajisje).
+Skripti krijon bazën **`IntelligentEnergySystem`**, tabelat dhe 8,640 lexime: 90 ditë × 24 orë × 4 pajisje (janar–mars 2026).
 
 > **Shënim:** Skedari `.mdf` ruhet në `C:\SQLData\` (folder i pakompresuar). Nëse `CREATE DATABASE` dështon me gabimin *"file is compressed"*, ekzekuto:
 > ```cmd
@@ -141,7 +147,7 @@ npm run dev
 | Method | Endpoint                    | Description                            |
 |--------|-----------------------------|----------------------------------------|
 | GET    | `/api/energy`               | List readings (supports filters)       |
-| GET    | `/api/energy/daily`         | Daily totals for last N days           |
+| GET    | `/api/energy/daily`         | Daily totals for the latest stored dates |
 | GET    | `/api/energy/monthly`       | Monthly totals                         |
 | GET    | `/api/energy/statistics`    | KPIs + chart data                      |
 | GET    | `/api/energy/devices`       | List of device names                   |
@@ -173,6 +179,9 @@ npm run dev
 
 ```
 IntelligentEnergyManagement/
+│
+├── DOCUMENTATION.md                  # Project report
+├── screenshots/                      # Interface figures used in the report
 │
 ├── Database/
 │   └── CreateDatabase.sql          # SQL Server schema + seed data
@@ -218,8 +227,13 @@ IntelligentEnergyManagement/
 ## AI Model Details
 
 ### Dataset
-- 2,160 synthetic hourly energy readings (90 days × 24 hours)
-- Generated with realistic patterns (morning/evening peaks, weekend reductions, temperature effects)
+
+The database and the training file cover the same period, but they do not contain the same number of rows:
+
+- **2,160** training rows = 90 days × 24 hours. The model is trained on one hourly series.
+- **8,640** database readings = 90 days × 24 hours × 4 devices (HVAC, Lighting, Appliances, Computers).
+
+The values were generated from predefined patterns for night, morning, working hours and evening, including weekend and temperature effects.
 
 ### Features
 
@@ -245,6 +259,8 @@ IntelligentEnergyManagement/
 | MAE    | ~0.12 kWh   |
 | RMSE   | ~0.17 kWh   |
 | R²     | ~0.99       |
+
+The dataset is synthetic and was generated using predefined consumption patterns. Therefore, the evaluation results should be interpreted as an indication of how well the model fits this dataset rather than as a measure of performance on real-world energy data.
 
 ### Recommendation Rules
 
@@ -281,6 +297,6 @@ Then open http://localhost:5173 in your browser.
 
 ## Notes
 
-- Authentication is intentionally omitted to keep the project demo-friendly.
+- The application runs locally for one operator and does not include user registration or authentication.
 - If the Python AI service is unreachable, the backend falls back to a rule-based prediction so the rest of the application still works.
 - The SQL seed data covers January–March 2026 with four devices: HVAC, Lighting, Appliances, Computers.

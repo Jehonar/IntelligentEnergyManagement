@@ -433,6 +433,8 @@ The target value is the energy consumption for that hour.
 
 The generated values include different consumption levels for night, morning, working hours and evening periods. Weekend and temperature factors are also included.
 
+The database stores 8,640 readings: 90 days, 24 hours and 4 devices. The model is trained on 2,160 rows: 90 days and 24 hours, without a separate row for each device.
+
 The dataset is synthetic and was created specifically for this project.
 
 ---
@@ -479,11 +481,7 @@ The current model produced the following results on the test data:
 | RMSE   | 0.1695 kWh |
 | R²     |     0.9914 |
 
-These results describe the model performance on the generated dataset.
-
-They should not be interpreted as the expected performance on a real building. Since the dataset was generated using known rules, the model can learn many of the same patterns used to create the data.
-
-A real system would need real energy measurements and additional validation.
+The dataset is synthetic and was generated using predefined consumption patterns. Therefore, the evaluation results should be interpreted as an indication of how well the model fits this dataset rather than as a measure of performance on real-world energy data.
 
 ---
 
@@ -751,19 +749,11 @@ The prediction is an estimate for the selected hour.
 
 # 10. Presentation and Demonstration
 
-The demonstration presents the working application in the following order.
+The project is submitted through a Git repository containing the complete source code and documentation.
 
-1. Introduce the project and the problem it addresses.
-2. Briefly explain the system architecture.
-3. Explain the main technologies used.
-4. Show the Dashboard.
-5. Open Monitoring and filter the energy data.
-6. Open the Prediction page and enter example values.
-7. Show the predicted energy consumption.
-8. Generate a recommendation.
-9. Open the Recommendations page.
-10. Briefly explain the testing and the main limitations.
-11. Answer questions.
+The repository includes the implemented application, database scripts, prediction service and the documentation required to understand and run the project.
+
+Repository: https://github.com/Jehonar/IntelligentEnergyManagement
 
 ---
 
