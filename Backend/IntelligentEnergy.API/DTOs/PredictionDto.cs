@@ -15,7 +15,7 @@ public class PredictionResponseDto
     public string PredictionDate { get; set; } = string.Empty;
     public int PredictionHour { get; set; }
     public decimal PredictedConsumption { get; set; }
-    public string CreatedAt { get; set; } = string.Empty;
+    public string CreatedDate { get; set; } = string.Empty;
 }
 
 public class PredictionHistoryDto
@@ -24,5 +24,5 @@ public class PredictionHistoryDto
     public string PredictionDate { get; set; } = string.Empty;
     public int PredictionHour { get; set; }
     public decimal PredictedConsumption { get; set; }
-    public string CreatedAt { get; set; } = string.Empty;
+    public string CreatedDate { get; set; } = string.Empty;
 }

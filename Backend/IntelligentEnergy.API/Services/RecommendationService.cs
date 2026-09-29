@@ -38,7 +38,7 @@ public class RecommendationService
     public async Task<List<RecommendationDto>> GetRecentAsync(int limit = 10)
     {
         return await _db.Recommendations
-            .OrderByDescending(r => r.CreatedAt)
+            .OrderByDescending(r => r.CreatedDate)
             .Take(limit)
             .Select(r => new RecommendationDto
             {
@@ -46,7 +46,7 @@ public class RecommendationService
                 PredictionId       = r.PredictionId,
                 Message            = r.Message,
                 RecommendationType = r.RecommendationType,
-                CreatedAt          = r.CreatedAt.ToString("o")
+                CreatedDate          = r.CreatedDate.ToString("o")
             })
             .ToListAsync();
     }
@@ -90,6 +90,6 @@ public class RecommendationService
         PredictionId       = r.PredictionId,
         Message            = r.Message,
         RecommendationType = r.RecommendationType,
-        CreatedAt          = r.CreatedAt.ToString("o")
+        CreatedDate          = r.CreatedDate.ToString("o")
     };
 }

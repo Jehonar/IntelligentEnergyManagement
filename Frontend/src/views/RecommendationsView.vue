@@ -32,7 +32,7 @@
             <span :class="['badge-' + rec.recommendationType.toLowerCase(), 'inline-block px-3 py-1 rounded-full text-sm font-bold']">
               {{ typeLabel(rec.recommendationType) }}
             </span>
-            <span class="text-xs text-gray-400">{{ new Date(rec.createdAt).toLocaleString('sq-AL') }}</span>
+            <span class="text-xs text-gray-400">{{ new Date(rec.createdDate).toLocaleString('sq-AL') }}</span>
           </div>
           <p class="text-gray-700 text-sm leading-relaxed">{{ rec.message }}</p>
           <p v-if="rec.predictionId" class="text-xs text-gray-400 mt-1">Bazuar në parashikimin #{{ rec.predictionId }}</p>

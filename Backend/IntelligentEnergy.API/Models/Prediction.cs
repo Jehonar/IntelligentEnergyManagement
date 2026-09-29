@@ -6,5 +6,5 @@ public class Prediction
     public DateOnly PredictionDate { get; set; }
     public int PredictionHour { get; set; }
     public decimal PredictedConsumption { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 }

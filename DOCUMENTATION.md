@@ -34,10 +34,6 @@ The application also includes a prediction feature. The user can enter values su
 
 After a prediction is made, the system can also provide a simple recommendation. The recommendation compares the predicted value with the historical average and classifies the result as low, normal, moderate or high.
 
-The project follows the general idea of the example project structure available on Moodle. The Moodle example was based on a collaborative task management application with AI-powered insights. In this project, the same general idea was applied to energy management. Instead of tasks and task assignments, the main information is related to energy readings, predictions and recommendations.
-
-Some features from the Moodle example, such as mobile development, user registration and cloud deployment, are not included because they are outside the scope of this project.
-
 ---
 
 ## 1.2 Why This Topic
@@ -301,28 +297,31 @@ Main fields:
 * EnergyConsumption
 * Temperature
 * DeviceName
-* CreatedAt
+* CreatedDate
 
 ### Predictions
 
 This table stores prediction results.
 
-Main fields include:
+Main fields:
 
-* Date
-* Hour
-* Predicted consumption
-* Created timestamp
+* Id
+* PredictionDate
+* PredictionHour
+* PredictedConsumption
+* CreatedDate
 
 ### Recommendations
 
 This table stores recommendations generated after a prediction.
 
-Main fields include:
+Main fields:
 
+* Id
 * PredictionId
 * Message
-* Type
+* RecommendationType
+* CreatedDate
 
 The database is populated with synthetic energy readings covering the selected project period.
 
@@ -347,15 +346,7 @@ If the Python service is unavailable, the backend can use the fallback calculati
 
 # 4. User Registration and Authentication
 
-The Moodle example includes user registration and authentication, but these features are not implemented in the current version of this project.
-
-This is mainly because of the project scope. The application is designed as a local student project and does not currently handle real user information.
-
-The current version is therefore intended to be used by one operator on a local machine.
-
-If the application were developed for real users, authentication would be needed. Possible future improvements could include ASP.NET Identity or JWT authentication, HTTPS and separate access for different users or buildings.
-
-This is a scope decision for the current version rather than a missing part of the implementation.
+The application runs locally and is used by one operator. It does not include user registration or authentication, and it does not store personal accounts.
 
 ---
 
@@ -562,9 +553,7 @@ The main navigation contains:
 * Prediction
 * Recommendations
 
-The interface was developed directly in Vue.js. A separate Figma design was not used.
-
-The main idea was to keep each page focused on one task:
+The interface was developed in Vue.js. Each page is focused on one task:
 
 * Dashboard – general overview
 * Monitoring – detailed energy readings
@@ -637,9 +626,7 @@ The main goal of the interface is to keep the important information visible with
 
 The prediction form also contains basic validation. For example, the hour field only accepts values between 0 and 23.
 
-The current application is mainly designed for a desktop or laptop browser. It is not a mobile application.
-
-An accessibility audit was not performed as part of this project.
+The application is designed for a desktop or laptop browser.
 
 ---
 
@@ -695,17 +682,7 @@ No automated unit-test project or CI pipeline was included in the current versio
 
 ---
 
-## 8.5 Checks During Development
-
-The daily consumption query uses the latest dates stored in the database, so the chart still shows the seeded January–March 2026 readings.
-
-The fallback prediction uses the same day numbering as the interface and the Python model: Monday is 0 and the weekend is Saturday and Sunday.
-
-An unreadable date sent to the readings endpoint returns a validation message instead of failing inside the date parser.
-
----
-
-## 8.6 Validation of Predictions and Recommendations
+## 8.5 Validation of Predictions and Recommendations
 
 The prediction functionality was checked using different combinations of input values.
 
@@ -753,7 +730,7 @@ To run the project locally:
 11. Request a recommendation for the prediction.
 12. Open Recommendations to see the stored results.
 
-The user does not need to know how Random Forest works to use the application. The prediction should be understood as an estimate for the selected hour and not as a monthly energy bill.
+The prediction is an estimate for the selected hour.
 
 ---
 
@@ -770,15 +747,11 @@ The user does not need to know how Random Forest works to use the application. T
 | Testing           | Manual testing and model metrics                     |
 | Deployment        | Localhost                                            |
 
-The project was developed as an individual project, so tools such as Jira or Trello were not necessary.
-
 ---
 
 # 10. Presentation and Demonstration
 
-The project can be presented in approximately 10–12 minutes.
-
-The suggested order is:
+The demonstration presents the working application in the following order.
 
 1. Introduce the project and the problem it addresses.
 2. Briefly explain the system architecture.
@@ -791,8 +764,6 @@ The suggested order is:
 9. Open the Recommendations page.
 10. Briefly explain the testing and the main limitations.
 11. Answer questions.
-
-There is no need to show large parts of the code during the presentation. It is more useful to demonstrate the application and explain how the main parts communicate.
 
 ---
 
@@ -861,30 +832,3 @@ Example prediction request:
   "previousConsumption": 15.4
 }
 ```
-
----
-
-# Appendix B – Recommendation Logic
-
-The recommendation type is selected by comparing the predicted consumption with the historical average:
-
-* Above 120% → HIGH
-* Above 105% → MODERATE
-* Between 90% and 105% → NORMAL
-* 90% or below → LOW
-
-These thresholds are predefined rules used by the application.
-
----
-
-# Appendix C – Figures
-
-The interface figures in Section 7.2 are:
-
-1. Dashboard — `screenshots/Ballina.png`
-2. Monitoring page — `screenshots/Monitorimi.png`
-3. Prediction form and prediction history — `screenshots/Parashikimi.png`
-4. Prediction result — `screenshots/Parashikimi-rezultat.png`
-5. Recommendations — `screenshots/Rekomandimet.png`
-
-The system architecture is shown as a diagram in Section 3.1.

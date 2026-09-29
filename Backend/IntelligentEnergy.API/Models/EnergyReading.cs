@@ -8,5 +8,5 @@ public class EnergyReading
     public decimal EnergyConsumption { get; set; }
     public decimal? Temperature { get; set; }
     public string DeviceName { get; set; } = string.Empty;
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 }

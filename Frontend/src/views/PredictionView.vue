@@ -104,7 +104,7 @@
               <td class="px-4 py-2 text-gray-700">{{ h.predictionDate }}</td>
               <td class="px-4 py-2 text-gray-500">{{ h.predictionHour }}:00</td>
               <td class="px-4 py-2 text-right font-mono font-semibold text-blue-700">{{ h.predictedConsumption.toFixed(4) }}</td>
-              <td class="px-4 py-2 text-right text-gray-400 text-xs">{{ new Date(h.createdAt).toLocaleString('sq-AL') }}</td>
+              <td class="px-4 py-2 text-right text-gray-400 text-xs">{{ new Date(h.createdDate).toLocaleString('sq-AL') }}</td>
             </tr>
           </tbody>
         </table>

@@ -6,7 +6,7 @@ public class RecommendationDto
     public int? PredictionId { get; set; }
     public string Message { get; set; } = string.Empty;
     public string RecommendationType { get; set; } = string.Empty;
-    public string CreatedAt { get; set; } = string.Empty;
+    public string CreatedDate { get; set; } = string.Empty;
 }
 
 public class RecommendationRequestDto

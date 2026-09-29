@@ -46,7 +46,7 @@ CREATE TABLE EnergyReadings (
     EnergyConsumption DECIMAL(10,4) NOT NULL,  -- kWh
     Temperature      DECIMAL(5,2) NULL,         -- Celsius
     DeviceName       NVARCHAR(100) NOT NULL,
-    CreatedAt        DATETIME2 NOT NULL DEFAULT GETUTCDATE()
+    CreatedDate        DATETIME2 NOT NULL DEFAULT GETUTCDATE()
 );
 GO
 
@@ -63,7 +63,7 @@ CREATE TABLE Predictions (
     PredictionDate       DATE NOT NULL,
     PredictionHour       INT NOT NULL CHECK (PredictionHour BETWEEN 0 AND 23),
     PredictedConsumption DECIMAL(10,4) NOT NULL,  -- kWh
-    CreatedAt            DATETIME2 NOT NULL DEFAULT GETUTCDATE()
+    CreatedDate            DATETIME2 NOT NULL DEFAULT GETUTCDATE()
 );
 GO
 
@@ -76,7 +76,7 @@ CREATE TABLE Recommendations (
     PredictionId       INT NULL REFERENCES Predictions(Id),
     Message            NVARCHAR(500) NOT NULL,
     RecommendationType NVARCHAR(50) NOT NULL,   -- HIGH | MODERATE | NORMAL | LOW
-    CreatedAt          DATETIME2 NOT NULL DEFAULT GETUTCDATE()
+    CreatedDate          DATETIME2 NOT NULL DEFAULT GETUTCDATE()
 );
 GO
 

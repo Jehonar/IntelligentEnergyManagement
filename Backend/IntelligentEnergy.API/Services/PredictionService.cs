@@ -53,14 +53,14 @@ public class PredictionService
             PredictionDate       = entity.PredictionDate.ToString("yyyy-MM-dd"),
             PredictionHour       = entity.PredictionHour,
             PredictedConsumption = entity.PredictedConsumption,
-            CreatedAt            = entity.CreatedAt.ToString("o")
+            CreatedDate            = entity.CreatedDate.ToString("o")
         };
     }
 
     public async Task<List<PredictionHistoryDto>> GetHistoryAsync(int limit = 20)
     {
         return await _db.Predictions
-            .OrderByDescending(p => p.CreatedAt)
+            .OrderByDescending(p => p.CreatedDate)
             .Take(limit)
             .Select(p => new PredictionHistoryDto
             {
@@ -68,7 +68,7 @@ public class PredictionService
                 PredictionDate       = p.PredictionDate.ToString("yyyy-MM-dd"),
                 PredictionHour       = p.PredictionHour,
                 PredictedConsumption = p.PredictedConsumption,
-                CreatedAt            = p.CreatedAt.ToString("o")
+                CreatedDate            = p.CreatedDate.ToString("o")
             })
             .ToListAsync();
     }

@@ -40,7 +40,7 @@ export interface PredictionResponse {
   predictionDate: string
   predictionHour: number
   predictedConsumption: number
-  createdAt: string
+  createdDate: string
 }
 
 export interface Recommendation {
@@ -48,7 +48,7 @@ export interface Recommendation {
   predictionId: number | null
   message: string
   recommendationType: string
-  createdAt: string
+  createdDate: string
 }
 
 // ── Energy endpoints ───────────────────────────────────────────────────────
